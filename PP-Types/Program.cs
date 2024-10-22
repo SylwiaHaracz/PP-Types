@@ -14,9 +14,19 @@ string[] names = {
 // After last element should be ".".
 void PrintGroups(string[] t, int perLine)
 {
-
-    // Write required code.
-
+    for (int i = 0; i < t.Length; i += perLine)
+    {
+        for (int j = 0; j < perLine; j++)
+        {
+            int current = i + j;
+            if (current < t.Length)
+            {
+                string result = current < t.Length - 1 ? t[current] + ", " : t[current] + ".";
+                Console.Write(result);
+            }
+        }
+        Console.WriteLine("\n");
+    }
 }
 
 
@@ -27,9 +37,39 @@ void PrintGroups(string[] t, int perLine)
 
 void PrintColumns(string[] t, int perLine, int width)
 {
-
-    // Write required code.
-
+    for (int i = 0; i < t.Length; i += perLine)
+    {
+        for (int j = 0; j < perLine; j++)
+        {
+            int current = i + j;
+            if (current<t.Length)
+            {
+                string current_string = t[current];
+                if (current_string.Length > width)
+                {
+                    string shortened_string = "";
+                    for (int k = 0; k < width; k++)
+                    {
+                       shortened_string += current_string[k];
+                    }
+                    string result = j != perLine - 1 ? shortened_string + "| " : shortened_string;
+                    Console.Write(result);
+                }
+                else
+                {
+                    int missing_length = width - current_string.Length;
+                    string missing_spaces = "";
+                    for (int l = 0; l < missing_length; l++)
+                    {
+                        missing_spaces += " ";
+                    }
+                    string result = j != perLine - 1 ? current_string + missing_spaces + "| " : current_string + missing_spaces;
+                    Console.Write(result);
+                }
+            }
+        }
+        Console.WriteLine("\n");
+    }
 }
 
 
